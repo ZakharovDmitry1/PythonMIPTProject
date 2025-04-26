@@ -1,0 +1,16 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="requests.models.Response.__getitem__" />
+          <option value="generation_map.COUNT_MOBS" />
+          <option value="app.data.jobs.jobs.sqlalchemy_serializer" />
+          <option value="task4_retry.*" />
+          <option value="list.__setitem__" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
