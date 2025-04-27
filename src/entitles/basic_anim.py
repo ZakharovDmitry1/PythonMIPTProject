@@ -56,17 +56,6 @@ class Anim(AnimationSprite):
         if self.hp <= 0:
             self.kill()
 
-    def attack(self, target: AnimationSprite):
-        '''
-        tc
-        :param target:
-        :return:
-        '''
-        if self.weapon is not None:
-            self.weapon.attack()
-        else:
-            target.set_damage(DEFAULT_DAMAGE)
-
     def set_armor(self, armor):
         self.armor = armor
 
@@ -86,9 +75,9 @@ class Anim(AnimationSprite):
             k = random.randint(1, 9)
             #DropWeapon('RoguelikeWeapons/Weapons 2-Sheet.png', columns=11, rows=8, column=random.randint(1, 9),
             #           width_image=50, pos=self.rect.center, class1='Gun', gid=(k + 25))
-        super(Anim, self).kill()
         if self.weapon is not None:
             self.weapon.kill()
+        super(Anim, self).kill()
 
 
 class EngryMob(Anim):

@@ -13,7 +13,7 @@ from src.utils.helpers import load_image
 
 class Boss(AnimationSprite):
     def __init__(self, x: int, y: int):
-        super(Boss, self).__init__(SOURCE_GOLEM_STAY, 2, 4, x, y, 400)
+        super(Boss, self).__init__(SOURCE_GOLEM_STAY, 2, 4, x, y, 300)
         BOSS_GROUP.add(self)
         ALL_SPRITES.add(self)
 

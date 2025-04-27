@@ -9,6 +9,7 @@ from src.entitles.animation_sprite import AnimationSprite
 from src.entitles.basic_anim import Anim
 from src.utils.assets_loader import PLAYER_GROUP, SOURCE_KNIGHT, SOURCE_MAG
 from src.utils.helpers import load_image
+from src.weapons.basic_weapon import Gun
 
 
 class Player(Anim):
@@ -31,6 +32,7 @@ class Player(Anim):
         super().__init__(sheet=source, list_height=list_height, list_weight=list_weight,
                          x=pos_x, y=pos_y, speed=10, hp=100, resize_len=75)
         PLAYER_GROUP.add(self)
+        self.weapon = Gun(self.rect.centerx, self.rect.centery)
 
     def update(self, *args: Any, **kwargs: Any) -> None:
         super().update()
@@ -38,10 +40,11 @@ class Player(Anim):
     def move(self, dx: float, dy: float):
         if time.time() - self.timer < TIME_MOVE_MOBS:
             return
+        self.attack()
         super(Player, self).move(dx, dy)
         if self.weapon is not None:
             self.weapon.move(dx * self.speed, dy * self.speed)
-        elif dx > 0:
+        if dx > 0:
             self.cur_column = 3
         elif dx < 0:
             self.cur_column = 2
@@ -50,3 +53,7 @@ class Player(Anim):
                 self.cur_column = 2
             if self.cur_column == 1:
                 self.cur_column = 3
+
+    def attack(self):
+        if self.weapon is not None:
+            self.weapon.attack(1, 1)

@@ -9,6 +9,7 @@ if __name__ == "__main__":
     boss_window = BossWindow()
     boss_window.load_start_window()
     boss_window.run()
+    boss_window.destroy()
     start_window = StartMap()
     start_window.load_start_window()
     start_window.run()

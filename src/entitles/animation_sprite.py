@@ -28,10 +28,10 @@ class AnimationSprite(pygame.sprite.Sprite):
         self.START_POS_Y: int = y * TILE_SIZE
 
         newImage.save('../assets/cache/sprite.png')
-        self.full_img: pygame.surface.Surface = load_image('/../assets/cache/sprite.png')
+        self.sheet: pygame.surface.Surface = load_image('/../assets/cache/sprite.png')
         super().__init__(ALL_SPRITES)
         self.list_for_sprites: list[list[pygame.surface.Surface]] = self.list_for_sprites
-        self.cut_sheet(self.full_img, self.list_for_sprites)
+        self.cut_sheet()
 
         self.cur_frame: int = 0
         self.cur_column: int = 0
@@ -45,13 +45,13 @@ class AnimationSprite(pygame.sprite.Sprite):
     def set_row(self):
         pass
 
-    def cut_sheet(self, sheet: pygame.Surface, list_for_sprites: list[list[pygame.surface.Surface]]):
-        self.rect = pygame.Rect(0, 0, sheet.get_width() // list_for_sprites[0].__len__(),
-                                sheet.get_height() // self.list_for_sprites.__len__())
-        for i in range(list_for_sprites.__len__()):
-            for j in range(list_for_sprites[i].__len__()):
+    def cut_sheet(self):
+        self.rect = pygame.Rect(0, 0, self.sheet.get_width() // self.list_for_sprites[0].__len__(),
+                                self.sheet.get_height() // self.list_for_sprites.__len__())
+        for i in range(self.list_for_sprites.__len__()):
+            for j in range(self.list_for_sprites[i].__len__()):
                 frame_location = (self.rect.w * j, self.rect.h * i)
-                self.list_for_sprites[i][j] = sheet.subsurface(pygame.Rect(
+                self.list_for_sprites[i][j] = self.sheet.subsurface(pygame.Rect(
                     frame_location, self.rect.size))
 
     def update(self, *args, **kwargs) -> bool:

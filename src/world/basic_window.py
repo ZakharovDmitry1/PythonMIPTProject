@@ -8,7 +8,8 @@ import pygame
 from src.config import FPS, WIDTH, HEIGHT, TIME_UPDATE_MOBS_ANIMATION
 from src.entitles.player import Player
 from src.entitles.title import Tile
-from src.utils.assets_loader import ALL_SPRITES, TILES_GROUP, PLAYER_GROUP, DEAD_ENEMY_GROUP, GUNS_GROUP, BOSS_GROUP
+from src.utils.assets_loader import ALL_SPRITES, TILES_GROUP, PLAYER_GROUP, DEAD_ENEMY_GROUP, GUNS_GROUP, BOSS_GROUP, \
+    BULLET_GROUP
 from src.utils.helpers import load_level, processor_buttons
 from src.world.camera import Camera
 
@@ -69,7 +70,9 @@ class BasicWindow:
         DEAD_ENEMY_GROUP.draw(self.screen)
         PLAYER_GROUP.draw(self.screen)
         GUNS_GROUP.draw(self.screen)
+        BULLET_GROUP.draw(self.screen)
         BOSS_GROUP.draw(self.screen)
+        GUNS_GROUP.draw(self.screen)
         pygame.display.flip()
 
     def destroy(self):
