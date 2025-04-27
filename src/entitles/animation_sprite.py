@@ -17,7 +17,7 @@ class AnimationSprite(pygame.sprite.Sprite):
         self.list_for_sprites: list[list] = [[0] * list_weight for _ in range(list_height)]
 
         # мы приводим картинку к нужному размеру равному resize_len
-        fullname = os.getcwd() + "/../"+ sheet
+        fullname = os.getcwd() + "/../" + sheet
         if not os.path.isfile(fullname):
             print(f"Файл с изображением '{fullname}' не найден")
             sys.exit()
