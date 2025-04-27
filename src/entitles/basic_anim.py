@@ -115,7 +115,6 @@ class EngryMob(Anim):
             dx = self.way[self.way_pos + 1][0] - self.way[self.way_pos][0]
             dy = self.way[self.way_pos + 1][1] - self.way[self.way_pos][1]
             self.simple_move(dx / self.max_count_move / 2, dy / self.max_count_move / 2)
-        print(self.rect.topleft)
         self.count_move += 1
 
 

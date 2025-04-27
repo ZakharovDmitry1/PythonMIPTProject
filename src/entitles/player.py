@@ -35,12 +35,12 @@ class Player(Anim):
         self.weapon = Gun(self.rect.centerx, self.rect.centery)
 
     def update(self, *args: Any, **kwargs: Any) -> None:
+
         super().update()
 
     def move(self, dx: float, dy: float):
         if time.time() - self.timer < TIME_MOVE_MOBS:
             return
-        self.attack()
         super(Player, self).move(dx, dy)
         if self.weapon is not None:
             self.weapon.move(dx * self.speed, dy * self.speed)
@@ -54,6 +54,6 @@ class Player(Anim):
             if self.cur_column == 1:
                 self.cur_column = 3
 
-    def attack(self):
+    def attack(self, target: tuple[float, float]):
         if self.weapon is not None:
-            self.weapon.attack(1, 1)
+            self.weapon.attack(target[0], target[1])

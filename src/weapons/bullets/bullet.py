@@ -5,7 +5,7 @@ import pygame
 
 from src.config import TILE_SIZE
 from src.entitles.animation_sprite import AnimationSprite
-from src.utils.assets_loader import WALLS_GROUP, MOBS_GROUP, BULLET_GROUP
+from src.utils.assets_loader import WALLS_GROUP, MOBS_GROUP, BULLET_GROUP, ALL_SPRITES
 
 
 class Bullet(AnimationSprite):
@@ -24,6 +24,7 @@ class Bullet(AnimationSprite):
         '''
         super(Bullet, self).__init__(sheet, 1, 1, x // TILE_SIZE, y // TILE_SIZE, size)
         BULLET_GROUP.add(self)
+        ALL_SPRITES.add(self)
         self.TARGET_POS_X = target_x
         self.TARGET_POS_Y = target_y
         self.speed = speed
@@ -39,9 +40,8 @@ class Bullet(AnimationSprite):
         self.dy = delta_y / len_vector
         self.rect = pygame.Rect(x, y, size, size)
 
-    def run(self):
+    def move(self):
         self.rect = self.rect.move(self.dx * self.speed, self.dy * self.speed)
-        return
         #if pygame.sprite.spritecollideany(self, WALLS_GROUP) or time.time() - self.time_start >= self.time_die:
         #    self.kill()
         #for i in MOBS_GROUP:
@@ -49,8 +49,11 @@ class Bullet(AnimationSprite):
         #        i.set_damage(self.damage)
         #        self.kill()
 
+    def update(self, *args, **kwargs):
+        self.move()
+
 
 class Bullet1(Bullet):
     def __init__(self, x, y, target_x, target_y):
         super(Bullet1, self).__init__('assets/sprites/bullets/Bullets 1-Sheet (0_0).png', x, y, target_x, target_y, 10,
-                                      10, 10, 10)
+                                      10, 10, 40)

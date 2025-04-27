@@ -9,7 +9,7 @@ from src.config import FPS, WIDTH, HEIGHT, TIME_UPDATE_MOBS_ANIMATION
 from src.entitles.player import Player
 from src.entitles.title import Tile
 from src.utils.assets_loader import ALL_SPRITES, TILES_GROUP, PLAYER_GROUP, DEAD_ENEMY_GROUP, GUNS_GROUP, BOSS_GROUP, \
-    BULLET_GROUP
+    BULLET_GROUP, LAVA_GROUP
 from src.utils.helpers import load_level, processor_buttons
 from src.world.camera import Camera
 
@@ -43,13 +43,18 @@ class BasicWindow:
         while running:
             if time.time() - time_move_mobs >= TIME_UPDATE_MOBS_ANIMATION:
                 time_move_mobs = time.time()
+            processor_buttons(self.player)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-            processor_buttons(self.player)
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    self.player.attack(event.pos)
             self.screen.fill((255, 255, 255))
             self.update()
             self.draw()
+            for i in LAVA_GROUP:
+                if i.rect.collidepoint(self.player.rect.center):
+                    running = False
 
     def update(self):
         '''

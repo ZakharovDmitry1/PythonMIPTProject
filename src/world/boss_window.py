@@ -46,30 +46,3 @@ class BossWindow(BasicWindow):
                     TILES_GROUP.add(tile)
                 elif self.map[i][j] == 49:
                     LAVA_GROUP.add(tile)
-
-    def run(self):
-        '''
-        главное окно экрана
-        Здесь отририсовывается все
-        :return:
-        '''
-        time_move_mobs: float = time.time()
-        running: bool = True
-        if not hasattr(self, 'player'):
-            print("player is not defined")
-            pygame.quit()
-            exit()
-            return
-        while running:
-            if time.time() - time_move_mobs >= TIME_UPDATE_MOBS_ANIMATION:
-                time_move_mobs = time.time()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-            processor_buttons(self.player)
-            self.screen.fill((255, 255, 255))
-            self.update()
-            self.draw()
-            for i in LAVA_GROUP:
-                if i.rect.collidepoint(self.player.rect.center):
-                    running = False
