@@ -3,6 +3,7 @@ import pygame
 SOURCE_KNIGHT = 'assets/sprites/characters/knight/knight_sprite.png'
 SOURCE_MAG = 'assets/sprites/characters/mag/mag.png'
 SOURCE_GOLEM_STAY = 'assets/boss/GolemStay.png'
+SOURCE_GOLEM_DIE = 'assets/boss/Golem2.png'
 
 ALL_SPRITES = pygame.sprite.Group()
 TILES_GROUP = pygame.sprite.Group()

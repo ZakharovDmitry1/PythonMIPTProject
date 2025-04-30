@@ -17,7 +17,7 @@ class BossWindow(BasicWindow):
     def __init__(self):
         super(BossWindow, self).__init__()
         self.player = Player(10, 10)
-        self.boss = Boss(20, 20)
+        self.boss = Boss(15, 15)
 
     def load_start_window(self):
         '''
