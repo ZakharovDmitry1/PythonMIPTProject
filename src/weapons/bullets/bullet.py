@@ -42,12 +42,12 @@ class Bullet(AnimationSprite):
 
     def move(self):
         self.rect = self.rect.move(self.dx * self.speed, self.dy * self.speed)
-        #if pygame.sprite.spritecollideany(self, WALLS_GROUP) or time.time() - self.time_start >= self.time_die:
-        #    self.kill()
-        #for i in MOBS_GROUP:
-        #    if pygame.sprite.collide_rect(i, self):
-        #        i.set_damage(self.damage)
-        #        self.kill()
+        if pygame.sprite.spritecollideany(self, WALLS_GROUP) or time.time() - self.time_start >= self.time_die:
+            self.kill()
+        for i in MOBS_GROUP:
+            if pygame.sprite.collide_rect(i, self):
+                i.set_damage(self.damage)
+                self.kill()
 
     def update(self, *args, **kwargs):
         self.move()

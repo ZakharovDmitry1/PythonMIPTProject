@@ -16,5 +16,6 @@ BLOCKS = {
     'grass' : 'assets/blocks/wall.png'
 }
 TIME_UPDATE_MOBS_ANIMATION: float = 0.1
+TIME_UPDATE_WEAPON_ANIMATION: float = 0.05
 DEFAULT_DAMAGE: int = 10
 TIME_MOVE_MOBS = 0.1
